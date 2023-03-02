@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { Formik, Field } from 'formik';
 import * as Yup from 'yup';
 import 'yup-phone';
+import { addContact } from 'redux/operations';
 import { useDispatch } from 'react-redux';
-import { addItem } from 'redux/itemsSlice';
 import Button from '../../shared/Button/Button';
 import InputName from '../../shared/InputName/InputName';
 import { Title, Label, FormAdd, ErrorsMessage } from './ContactForm.styled';
@@ -16,12 +16,12 @@ export const schema = Yup.object({
 
 const ContactForm = ({ contacts }) => {
   const dispatch = useDispatch();
-  const addContact = (values, { resetForm }) => {
+  const handleaddContact = (values, { resetForm }) => {
     const { name, number } = values;
 
     let addedContact = {
-      name,
-      number,
+      name: name.value,
+      number: number.value,
       id: nanoid(),
     };
 
@@ -36,7 +36,7 @@ const ContactForm = ({ contacts }) => {
     });
 
     if (isAdded === true) {
-      dispatch(addItem(addedContact));
+      dispatch(addContact(addedContact));
     }
 
     resetForm();
@@ -53,7 +53,7 @@ const ContactForm = ({ contacts }) => {
       <Formik
         validationSchema={schema}
         initialValues={initialValue}
-        onSubmit={addContact}
+        onSubmit={handleaddContact}
       >
         {({ errors, touched }) => (
           <FormAdd autoComplete="off">

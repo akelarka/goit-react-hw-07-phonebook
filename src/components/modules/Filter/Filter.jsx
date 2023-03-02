@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { setSearchValue } from 'redux/searchSlice';
 import InputName from '../../shared/InputName/InputName';
@@ -21,7 +20,3 @@ const Filter = () => {
 };
 
 export default Filter;
-
-Filter.propType = {
-  findContact: PropTypes.func.isRequired,
-};

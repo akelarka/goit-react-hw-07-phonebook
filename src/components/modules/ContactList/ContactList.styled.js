@@ -18,3 +18,8 @@ export const ListMessage = styled.p`
   display: inline-block;
   padding: 20px;
 `;
+
+export const Loader = styled.p`
+  display: inline-block;
+  padding: 20px;
+`;

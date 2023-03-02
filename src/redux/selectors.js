@@ -1,3 +1,3 @@
-export const getItems = state => state.items;
+export const selectItems = state => state.items;
 
-export const getSearchValue = state => state.searchValue;
+export const selectSearchValue = state => state.searchValue;

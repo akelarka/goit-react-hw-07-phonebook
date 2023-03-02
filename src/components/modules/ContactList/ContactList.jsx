@@ -1,12 +1,19 @@
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
-import { getSearchValue } from 'redux/selectors';
+import { selectItems } from 'redux/selectors';
+import { selectSearchValue } from 'redux/selectors';
 import Filter from '../Filter/Filter';
 import ContactListItem from './ContactListItem/ContactListItem';
-import { PhoneBookList, Contact, ListMessage } from './ContactList.styled';
+import {
+  PhoneBookList,
+  Contact,
+  ListMessage,
+  Loader,
+} from './ContactList.styled';
 
 const ContactList = ({ contacts, deleteContact, findContact }) => {
-  const filter = useSelector(getSearchValue);
+  const { isLoading } = useSelector(selectItems);
+  const filter = useSelector(selectSearchValue);
   let filteredContacts = contacts;
 
   if (filter.searchValue.toLowerCase()) {
@@ -17,6 +24,7 @@ const ContactList = ({ contacts, deleteContact, findContact }) => {
   return (
     <>
       <Filter findContact={findContact}></Filter>
+      {isLoading && <Loader className="inputName">Loading contacts...</Loader>}
       {!contacts.length && (
         <ListMessage className="inputName">
           Your contactlist is empty
