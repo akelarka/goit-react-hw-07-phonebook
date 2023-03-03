@@ -6,6 +6,7 @@ export const Title = styled.h1`
 `;
 
 export const FormAdd = styled(Form)`
+  height: 100vh;
   float: left;
   margin-right: 20px;
   margin-left: 20px;

@@ -18,10 +18,11 @@ const ContactForm = ({ contacts }) => {
   const dispatch = useDispatch();
   const handleaddContact = (values, { resetForm }) => {
     const { name, number } = values;
+    console.log(name.value, number.value);
 
     let addedContact = {
-      name: name.value,
-      number: number.value,
+      name: name,
+      number: number,
       id: nanoid(),
     };
 
@@ -37,6 +38,7 @@ const ContactForm = ({ contacts }) => {
 
     if (isAdded === true) {
       dispatch(addContact(addedContact));
+      console.log(addedContact);
     }
 
     resetForm();
